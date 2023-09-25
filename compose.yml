@@ -1,0 +1,10 @@
+services:
+  api:
+    image: spring-boot-api-test:1.0
+    restart: always
+    ports:
+      - 9100:8080
+    networks:
+      - spring-postgres
+networks:
+  spring-postgres:

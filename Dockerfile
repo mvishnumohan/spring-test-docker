@@ -1,13 +1,10 @@
-FROM eclipse-temurin:17-jdk-jammy as builder
+FROM gradle:8.3.0-jdk17-jammy as builder
+LABEL stage=builder
 WORKDIR /opt/app
 COPY build.gradle settings.gradle gradlew ./
 COPY gradle gradle
 COPY src src
-RUN ./gradlew clean build --no-daemon
-RUN ls
-RUN ./gradlew clean build
-RUN cd build
-RUN ls
+RUN gradle clean build
  
 FROM eclipse-temurin:17-jre-jammy
 LABEL maintainer="Vishnu https://github.com/mvishnumohan"
